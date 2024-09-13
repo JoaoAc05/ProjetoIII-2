@@ -1,7 +1,7 @@
 import express from "express";
-import { UserRouter } from "./UserRouter.js";
+import { AlunoRouter } from "./AlunoRouter.js";
 
 const router = express.Router();
-router.use("/user", UserRouter);
+router.use("/aluno", AlunoRouter);
 
 export default router;
