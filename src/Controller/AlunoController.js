@@ -12,12 +12,12 @@ class alunoController {
 
     async getId(req, res, next) {
         const {
-            id
+            indice
         } = req.params;
         try {
             const aluno = await prisma.Aluno.findUnique({
                 where: {
-                    id: Number(id),
+                    id: Number(indice),
                 },
             })
             res.status(200).json(aluno)
@@ -36,14 +36,12 @@ class alunoController {
     }
 
     async alterar(req, res, next){
-        const { id } = req.body;
-
+        const { indice } = req.params;
         try { 
             const updateAlunos = await prisma.Aluno.updateMany({
                 where: {
-                    id: id,
+                    id: Number(indice),
                 },
-                data: req.body
             })
             res.status(200).json({sucesso: 'Aluno alterado com sucesso.'});
         } catch (e) {
@@ -52,10 +50,10 @@ class alunoController {
     }
 
     async deletar(req, res, next) {
-        const { id } = req.params;
+        const { indice } = req.params;
         try {
             const deleteAlunos = await prisma.Aluno.deleteMany({
-                where: { id: Number(id), },
+                where: { id: Number(indice), },
             })
             res.status(200).json({sucess: 'Aluno deletado com sucesso.'})
         } catch (e) {

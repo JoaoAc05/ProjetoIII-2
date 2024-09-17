@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Aluno {
-  id Int @id @default (autoincrement())
+  indice Int @id @default (autoincrement())
   nome String
   ra String
   cpf String

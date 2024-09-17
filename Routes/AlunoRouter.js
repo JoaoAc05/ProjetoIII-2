@@ -8,7 +8,7 @@ const AlunoController = new alunoController();
 AlunoRouter.get('/', AlunoController.getAll); // Select *
 AlunoRouter.get('/:id', AlunoController.getId); //Select * where id =
 AlunoRouter.post('/', AlunoController.cadastro); // Insert
-AlunoRouter.put('/', AlunoController.alterar); // Alter
+AlunoRouter.put('/:id', AlunoController.alterar); // Alter
 AlunoRouter.delete('/:id', AlunoController.deletar); //Delete
 
 export { AlunoRouter };
