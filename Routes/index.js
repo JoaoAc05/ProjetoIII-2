@@ -4,6 +4,6 @@ import { HomeRouter } from "./HomeRouter.js";
 
 const router = express.Router();
 router.use("/aluno", AlunoRouter);
-router.use("/", HomeRouter);
+router.use("/home", HomeRouter);
 
 export default router;
