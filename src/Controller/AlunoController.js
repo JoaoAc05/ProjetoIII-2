@@ -22,16 +22,16 @@ class alunoController {
             })
             res.status(200).json(aluno)
         } catch (e) {
-            res.status(500).json({error:'Erro ao retornar aluno.'})
+            res.status(500).json({error: 'Erro ao retornar aluno.'})
         }
     };
 
     async cadastro(req, res, next) {
         try{
             const createAluno = await prisma.Aluno.create({ data: req.body })
-            res.status(200).json({success: 'Aluno criado com sucesso.'});
+            res.status(200).json({sucesso: 'Aluno criado com sucesso.'});
         } catch (e) {
-            res.status(500).json({error: console.log(e) + 'Erro ao criar aluno.'});
+            res.status(500).json({error: 'Erro ao criar aluno.'});
         }
     }
 
@@ -53,9 +53,11 @@ class alunoController {
         const { indice } = req.params;
         try {
             const deleteAlunos = await prisma.Aluno.deleteMany({
-                where: { id: Number(indice), },
+                where: { 
+                    id: Number(indice), 
+                },
             })
-            res.status(200).json({sucess: 'Aluno deletado com sucesso.'})
+            res.status(200).json({sucesso: 'Aluno deletado com sucesso.'})
         } catch (e) {
             res.status(500).json({error: 'Erro ao deletar aluno.'})
         }
