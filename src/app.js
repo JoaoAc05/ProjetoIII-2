@@ -8,4 +8,4 @@ app.use(express.json());
 //Rotas
 app.use('/', index);
 
-export { app };
+export default app ;
