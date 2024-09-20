@@ -6,7 +6,7 @@ class alunoController {
             const alunos = await prisma.Aluno.findMany()
             res.status(200).json(alunos);
         } catch (e) {
-            res.status(500).json({error: e.error + ' - Erro ao retornar aluno'});
+            res.status(500).json({error: e + ' - Erro ao retornar aluno'});
         }
     }
 
