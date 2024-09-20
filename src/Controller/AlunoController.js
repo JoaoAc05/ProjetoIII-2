@@ -6,7 +6,7 @@ class alunoController {
             const alunos = await prisma.Aluno.findMany()
             res.status(200).json(alunos);
         } catch (e) {
-            res.status(500).json({error: e + ' - Erro ao retornar aluno'});
+            res.status(500).json({error: 'Erro ao retornar aluno: ' + e});
         }
     }
 
@@ -22,7 +22,7 @@ class alunoController {
             })
             res.status(200).json(aluno)
         } catch (e) {
-            res.status(500).json({error: 'Erro ao retornar aluno.'})
+            res.status(500).json({error: 'Erro ao retornar aluno: ' + e})
         }
     };
 
@@ -31,7 +31,7 @@ class alunoController {
             const createAluno = await prisma.Aluno.create({ data: req.body })
             res.status(200).json({sucesso: 'Aluno criado com sucesso.'});
         } catch (e) {
-            res.status(500).json({error: 'Erro ao criar aluno.'});
+            res.status(500).json({error: 'Erro ao criar aluno: ' + + e});
         }
     }
 
@@ -45,7 +45,7 @@ class alunoController {
             })
             res.status(200).json({sucesso: 'Aluno alterado com sucesso.'});
         } catch (e) {
-            res.status(500).json({error: 'Erro ao alterar aluno'});
+            res.status(500).json({error:'Erro ao alterar aluno: ' + e});
         }
     }
 
