@@ -60,8 +60,8 @@ class alunoController {
     }
 
     async alterar(req, res, next) {
-        const { indice } = req.params;
-        const dataToUpdate = req.body; // Sem necessidade de indice no body
+        const { indice } = req.body;
+        const dataToUpdate = req.body;
     
         // Verifica se o body está vazio
         if (Object.keys(dataToUpdate).length === 0) {
