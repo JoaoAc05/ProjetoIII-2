@@ -17,7 +17,7 @@ class alunoController {
         try {
             const aluno = await prisma.Aluno.findUnique({
                 where: {
-                    id: Number(indice),
+                    indice: Number(indice),
                 },
             })
             res.status(200).json(aluno)
@@ -40,7 +40,7 @@ class alunoController {
         try { 
             const updateAlunos = await prisma.Aluno.updateMany({
                 where: {
-                    id: Number(indice),
+                    indice: Number(indice),
                 },
             })
             res.status(200).json({sucesso: 'Aluno alterado com sucesso.'});
@@ -54,7 +54,7 @@ class alunoController {
         try {
             const deleteAlunos = await prisma.Aluno.deleteMany({
                 where: { 
-                    id: Number(indice), 
+                    indice: Number(indice), 
                 },
             })
             res.status(200).json({sucesso: 'Aluno deletado com sucesso.'})
