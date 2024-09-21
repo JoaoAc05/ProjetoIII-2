@@ -29,7 +29,7 @@ class alunoController {
     async cadastro(req, res, next) {
         try{
             const createAluno = await prisma.Aluno.create({ data: req.body })
-            res.status(201).json({sucesso: 'Aluno criado com sucesso.'});
+            res.status(201).json(createAluno);
         } catch (e) {
             res.status(500).json({error: 'Erro ao criar aluno: ' + e.message});
         }
