@@ -27,11 +27,35 @@ class alunoController {
     };
 
     async cadastro(req, res, next) {
-        try{
-            const createAluno = await prisma.Aluno.create({ data: req.body })
+        const { hora_post } = req.body;
+    
+        try {
+            // Verifica se a hora_post está presente e é uma data válida
+            if (!hora_post || isNaN(new Date(hora_post))) {
+                return res.status(400).json({ error: 'Hora do post inválida.' });
+            }
+    
+            // Obtém a hora atual do servidor
+            const serverTime = new Date();
+    
+            // Converte as duas datas para o mesmo fuso horário (UTC)
+            const postTime = new Date(hora_post);
+            const timeDifference = Math.abs(postTime - serverTime);
+    
+            // Verifica se a diferença é maior que 10 segundos
+            if (timeDifference > 10000) { // 10 segundos em milissegundos
+                return res.status(400).json({
+                    error: 'Horário do post inválido.',
+                    serverTime: serverTime.toISOString(),
+                    postTime: postTime.toISOString(),
+                });
+            }
+    
+            // Se a validação passar, cria o aluno
+            const createAluno = await prisma.Aluno.create({ data: req.body });
             res.status(201).json(createAluno);
         } catch (e) {
-            res.status(500).json({error: 'Erro ao criar aluno: ' + e.message});
+            res.status(500).json({ error: 'Erro ao criar aluno: ' + e.message });
         }
     }
 

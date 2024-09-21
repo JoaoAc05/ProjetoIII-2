@@ -14,8 +14,9 @@ datasource db {
 model Aluno {
   indice Int @id @default (autoincrement())
   nome String
-  ra String
+  ra String @unique
   cpf String
   imei Int
-  status Int
+  status Int @default(0)
+  hora_post DateTime?
 }
