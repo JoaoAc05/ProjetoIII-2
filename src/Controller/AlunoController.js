@@ -32,22 +32,22 @@ class alunoController {
         try {
             // Verifica se a hora_post está presente e é uma data válida
             if (!hora_post || isNaN(new Date(hora_post))) {
-                return res.status(400).json({ error: 'Hora do post inválida.' });
+                return res.status(400).json({ error: 'Hora do post inválida. ' + hora_post });
             }
     
             // Obtém a hora atual do servidor
-            const serverTime = new Date();
+            const horarioServidor = new Date();
     
             // Converte as duas datas para o mesmo fuso horário (UTC)
-            const postTime = new Date(hora_post);
-            const timeDifference = Math.abs(postTime - serverTime);
+            const horarioRecebido = new Date(hora_post);
+            const diferencaTempo = Math.abs(horarioRecebido - horarioServidor);
     
             // Verifica se a diferença é maior que 10 segundos
-            if (timeDifference > 10000) { // 10 segundos em milissegundos
+            if (diferencaTempo > 10000) { // 10 segundos em milissegundos
                 return res.status(400).json({
                     error: 'Horário do post inválido.',
-                    serverTime: serverTime.toISOString(),
-                    postTime: postTime.toISOString(),
+                    horarioServidor: horarioServidor.toISOString(),
+                    horarioRecebido: horarioRecebido.toISOString(),
                 });
             }
     
