@@ -57,7 +57,7 @@ class alunoController {
             res.status(201).json({sucess: "Presença Registrada! Boa aula."});
         } catch (e) {
             //res.status(500).json({ error: 'Erro ao criar aluno: ' + e.message });
-            res.status(500).json({ error: 'Erro no servidor'});
+            res.status(500).json({ error: 'Erro no servidor:   ' + e});
         }
     }
 
