@@ -45,17 +45,19 @@ class alunoController {
             // Verifica se a diferença é maior que 10 segundos
             if (diferencaTempo > 10000) { // 10 segundos em milissegundos
                 return res.status(400).json({
-                    error: 'Horário do post inválido.',
-                    horarioServidor: horarioServidor.toISOString(),
-                    horarioRecebido: horarioRecebido.toISOString(),
+                    error: 'Horário não aceito.',
+                //    horarioServidor: horarioServidor.toISOString(),
+                //    horarioRecebido: horarioRecebido.toISOString(),
                 });
             }
     
             // Se a validação passar, cria o aluno
             const createAluno = await prisma.Aluno.create({ data: req.body });
-            res.status(201).json(createAluno);
+            //res.status(201).json(createAluno);     - RES CORRETO PARA O PROJETO
+            res.status(201).json({sucess: "Presença Registrada! Boa aula."});
         } catch (e) {
-            res.status(500).json({ error: 'Erro ao criar aluno: ' + e.message });
+            //res.status(500).json({ error: 'Erro ao criar aluno: ' + e.message });
+            res.status(500).json({ error: 'Erro no servidor'});
         }
     }
 

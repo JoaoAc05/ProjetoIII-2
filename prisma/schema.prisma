@@ -14,7 +14,7 @@ datasource db {
 model Aluno {
   indice Int @id @default (autoincrement())
   nome String
-  ra String @unique
+  ra String
   cpf String
   imei Int
   status Int @default(0)
