@@ -42,22 +42,20 @@ class alunoController {
             const horarioRecebido = new Date(hora_post);
             const diferencaTempo = Math.abs(horarioRecebido - horarioServidor);
     
-            // Verifica se a diferença é maior que 10 segundos
-            if (diferencaTempo > 10000) { // 10 segundos em milissegundos
+            // Verifica se a diferença é maior que 5 segundos
+            if (diferencaTempo > 5000) { // 5 segundos em milissegundos
                 return res.status(400).json({
                     error: 'Horário não aceito.',
-                //    horarioServidor: horarioServidor.toISOString(),
-                //    horarioRecebido: horarioRecebido.toISOString(),
+                    horarioServidor: horarioServidor.toISOString(),
+                    horarioRecebido: horarioRecebido.toISOString(),
                 });
             }
     
             // Se a validação passar, cria o aluno
             const createAluno = await prisma.Aluno.create({ data: req.body });
-            //res.status(201).json(createAluno);     - RES CORRETO PARA O PROJETO
-            res.status(201).json({sucess: "Presença Registrada! Boa aula."});
+            res.status(201).json(createAluno);
         } catch (e) {
-            //res.status(500).json({ error: 'Erro ao criar aluno: ' + e.message });
-            res.status(500).json({ error: 'Erro no servidor:   ' + e});
+            res.status(500).json({ error: 'Erro ao criar aluno: ' + e.message });
         }
     }
 
