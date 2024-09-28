@@ -42,8 +42,8 @@ class alunoController {
             const horarioRecebido = new Date(hora_post);
             const diferencaTempo = Math.abs(horarioRecebido - horarioServidor);
     
-            // Verifica se a diferença é maior que 10 segundos
-            if (diferencaTempo > 5000) { // 10 segundos em milissegundos
+            // Verifica se a diferença é maior que 5 segundos
+            if (diferencaTempo > 5000) { // 5 segundos em milissegundos
                 return res.status(400).json({
                     error: 'Horário não aceito.',
                 //    horarioServidor: horarioServidor.toISOString(),
